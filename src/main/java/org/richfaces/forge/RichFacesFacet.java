@@ -52,7 +52,7 @@ public class RichFacesFacet extends BaseFacet {
             for (RichFacesVersion version : RichFacesVersion.values()) {
                 boolean hasVersionDependencies = true;
                 for (Dependency dependency : version.getDependencies()) {
-                    if (!deps.hasDependency(dependency)) {
+                    if (!deps.hasDirectDependency(dependency)) {
                         hasVersionDependencies = false;
                         break;
                     }
@@ -140,7 +140,7 @@ public class RichFacesFacet extends BaseFacet {
 
         DependencyFacet deps = project.getFacet(DependencyFacet.class);
         for (Dependency dependency : version.getDependencies()) {
-            deps.addDependency(dependency);
+            deps.addDirectDependency(dependency);
         }
 
         // TODO: When forge has classifier support (<classifier>jdk15</classifier>)
